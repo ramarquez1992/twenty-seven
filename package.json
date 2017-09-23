@@ -2,9 +2,9 @@
   "name": "twenty-seven",
   "version": "0.0.1",
   "description": "",
-  "main": "./src/server.js",
+  "main": "./src/twenty-seven.js",
   "scripts": {
-    "start": "node ./src/server.js",
+    "start": "node ./src/twenty-seven.js",
     "test": "mocha --reporter spec"
   },
   "repository": {
