@@ -14,7 +14,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('styles', function() {
-  return gulp.src('./src/public/styles/*.sass')
+  return gulp.src('./src/public/styles/*.scss')
     .pipe(concat('styles.css'))
     .pipe(sass({ outputStyle: 'compressed' }))
     .on('error', function(err) { console.log(err); })
