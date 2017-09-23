@@ -31,7 +31,7 @@ gulp.task('lint', function() {
 gulp.task('watch', function() {
   gulp.watch(['./src/public/js/*.js', './src/controllers/*.js', './src/models/*.js'], ['lint']);
   gulp.watch('./src/public/js/*.js', ['scripts']);
-  gulp.watch('./src/public/styles/*.sass', ['styles']);
+  gulp.watch('./src/public/styles/*.scss', ['styles']);
 });
 
 gulp.task('default', ['scripts', 'styles']);
