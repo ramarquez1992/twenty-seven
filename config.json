@@ -1,0 +1,6 @@
+{
+  "NODE_PORT": 3000,
+  "LOG_FILE_LOCATION": "./resources/",
+  "LOG_FILE_NAME": "info.log",
+  "ERROR_FILE_NAME": "error.log"
+}
