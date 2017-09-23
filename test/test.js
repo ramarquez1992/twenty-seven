@@ -1,9 +1,15 @@
 const expect = require('chai').expect;
 
 describe('server', function() {
+  const x = 3;
+
   describe('testFunc()', function() {
-    it('should save without error', function() {
-      expect(3).to.equal(3);
+    it('x should equal 3', function() {
+      expect(x).to.equal(3);
+    });
+
+    it('x should equal 5', function() {
+      expect(x).to.equal(5);
     });
   });
 });
