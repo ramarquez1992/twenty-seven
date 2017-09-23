@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/public'));
 
 // define endpoints and controllers
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/public/views/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 // start the server
