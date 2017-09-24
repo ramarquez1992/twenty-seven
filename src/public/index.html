@@ -2,13 +2,21 @@
 <html>
 <head>
   <title>asdf</title>
+
   <link rel="stylesheet" href="styles.min.css">
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="994277392420-atrlgsj5tjrin5a0mug33dg8jk0hb2ah.apps.googleusercontent.com">
+
   <script src="app.min.js"></script>
 </head>
 <body>
 
   <div class="c1">asdf</div>
   <div class="c2">qwerty</div>
+
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <a href="#" onclick="signOut();">Sign out</a>
 
 </body>
 </html>

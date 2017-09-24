@@ -1,6 +1,9 @@
 {
   "NODE_PORT": 3000,
+
   "LOG_FILE_LOCATION": "./resources/",
   "LOG_FILE_NAME": "info.log",
-  "ERROR_FILE_NAME": "error.log"
+  "ERROR_FILE_NAME": "error.log",
+
+  "GOOGLE_CLIENT_ID": "994277392420-atrlgsj5tjrin5a0mug33dg8jk0hb2ah.apps.googleusercontent.com"
 }

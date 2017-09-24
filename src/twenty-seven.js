@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('../config.json');
 const logger = require('./util/logger.js');
+const auth = require('./controllers/auth.js');
 
 // configure server
 var app = express();
@@ -12,6 +13,8 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
+
+app.post('/auth/verify', auth.verify);
 
 // start the server
 var server = app.listen(config.NODE_PORT, function() {
