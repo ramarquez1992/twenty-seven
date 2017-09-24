@@ -1,20 +1,32 @@
 'use strict';
 
-var idToken;
+var auth2;
 
-function onSignIn(googleUser) {
-  idToken = googleUser.getAuthResponse().id_token;
+gapi.load('auth2', function(){
+  auth2 = gapi.auth2.init({
+    client_id: '994277392420-atrlgsj5tjrin5a0mug33dg8jk0hb2ah.apps.googleusercontent.com'
+  });
+
+  auth2.attachClickHandler('signin-button', {}, signIn);
+});
+
+function signIn(googleUser) {
+  let idToken = googleUser.getAuthResponse().id_token;
 
   verifyUser(idToken).then(res => {
     console.log(res);
-    if (res === true) {
+    if (res == 'true') {
+      localStorage.setItem('idToken', idToken);
+
       // TODO: route to main page
+      document.location = '/profile';
     } else {
-      // TODO: route to error page
+      document.location = '/error';
     }
   });
 
   // google profile info
+  // TODO: store basic info in localstorage
   let profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
   console.log('Name: ' + profile.getName());
@@ -23,9 +35,9 @@ function onSignIn(googleUser) {
 }
 
 function signOut() {
-  let auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
-    console.log('User signed out.');
+    localStorage.removeItem('idToken');
+    document.location = '/';
   });
 }
 
@@ -38,12 +50,21 @@ function verifyUser(idToken) {
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
     xhr.onload = function() {
-      let loginResult = xhr.responseText;
-      resolve(loginResult);
+      resolve(xhr.responseText);
     };
 
     xhr.send(JSON.stringify({ idToken: idToken }));
 
   });
+}
+
+function getIdToken() {
+  return localStorage.getItem('idToken');
+}
+
+function requireAuth() {
+  if (getIdToken() === null) {
+    document.location = '/';
+  }
 }
 
