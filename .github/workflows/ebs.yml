@@ -28,7 +28,7 @@ jobs:
     - run: git config --global user.email "ramarquez1992@gmail.com"
     - run: git config --global user.name "GitHub Workflow"
     - run: git add .
-    - run: git commit -am "adding build/"
+    - run: git commit -am "adding client/build/"
     - name: AWS Elastic Beanstalk cli
       uses: hmanzur/actions-aws-eb@v1.0.0
       with:
