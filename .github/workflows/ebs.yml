@@ -23,6 +23,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: npm install --prefix client
     - run: npm run --prefix client build
     - run: git commit -am 'adding build/'
     - name: AWS Elastic Beanstalk cli
