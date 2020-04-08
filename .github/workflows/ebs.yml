@@ -26,6 +26,8 @@ jobs:
     - run: npm install --prefix client
     - run: npm run --prefix client build
     - run: git commit -am 'adding build/'
+    - run: git config --global user.email "ramarquez1992@gmail.com"
+    - run: git config --global user.name "GitHub Workflow"  
     - name: AWS Elastic Beanstalk cli
       uses: hmanzur/actions-aws-eb@v1.0.0
       with:
