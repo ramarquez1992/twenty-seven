@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
+const sql = require('../services/sql');
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  sql.prepped('select * from "Sessions"')
+      .then(data => {
+        res.send(data);
+      });
 });
 
 module.exports = router;

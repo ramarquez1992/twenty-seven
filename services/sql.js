@@ -10,8 +10,16 @@ const client = new Client({
 client.connect();
 
 module.exports = {
-  prepped: async (stmt, params) => {
-    return await client.query(stmt, params);
+  prepped: async (stmt, params = []) => {
+    let res;
+
+    try {
+      res = await client.query(stmt, params);
+    } catch(err) {
+      console.log(err);
+    }
+
+    return res ? res.rows : [];
   }
 };
 
