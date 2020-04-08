@@ -7,6 +7,9 @@ const cors = require('cors');
 const usersRouter = require('./routes/users');
 
 const app = express();
+app.get('/', (req, res) => {
+  res.send('just gonna send it');
+});
 
 app.use(cors());
 app.use(logger('dev'));
