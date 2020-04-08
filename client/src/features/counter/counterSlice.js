@@ -29,9 +29,13 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 export const incrementAsync = amount => dispatch => {
-  setTimeout(() => {
-    dispatch(incrementByAmount(amount));
-  }, 1000);
+  fetch('/users')
+      .then(res => res.text())
+      .then(res => {
+        console.log(res);
+        dispatch(incrementByAmount(10));
+      })
+      .catch(err => err);
 };
 
 // The function below is called a selector and allows us to select a value from
