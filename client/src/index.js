@@ -6,13 +6,22 @@ import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+        store.getState().auth.currentUser
+            ? <Component {...props} />
+            : <Redirect to='/' />
+    )} />
+);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
         <Route path="/" component={App} />
-        <Route path="/counter" component={Counter} />
+        <PrivateRoute path="/counter" component={Counter} />
       </Router>
     </Provider>
   </React.StrictMode>,
