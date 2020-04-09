@@ -11,7 +11,7 @@ import Header from "./components/header/Header";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
-        store.getState().auth.currentUser
+        store.getState().auth.loggedIn
             ? <Component {...props} />
             : <Redirect to='/' />
     )} />
@@ -21,7 +21,7 @@ ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
         <Router>
-          {store.getState().auth.currentUser ?
+          {store.getState().auth.loggedIn ?
               <Route>
                 <Header/>
                 <Switch>

@@ -7,7 +7,7 @@ export function Home() {
 
   return (
     <div>
-      {/*<p>user: {currentUser.profile.name}</p>*/}
+      <p>user: {JSON.stringify(currentUser)}</p>
       <img src={process.env.PUBLIC_URL + 'logo192.png'} className="App-logo" alt="logo" />
     </div>
   );

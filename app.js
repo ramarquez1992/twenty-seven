@@ -6,6 +6,7 @@ const cors = require('cors');
 const errorHandler = require('./services/errorHandler');
 const jwt = require('./services/jwt');
 const apiRouter = require('./routes/api');
+const loginRouter = require('./routes/login');
 
 
 const app = express();
@@ -17,9 +18,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-// app.use(jwt);
-
-app.use('/api', apiRouter);
+app.use('/login', loginRouter);
+app.use('/api', jwt.middleware, apiRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));

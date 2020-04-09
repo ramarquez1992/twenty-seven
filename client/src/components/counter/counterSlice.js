@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {callApi} from '../../middleware/api';
 
 export const counterSlice = createSlice({
   name: 'counter',
@@ -28,34 +29,13 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
-function authHeader() {
-  // return authorization header with jwt token
-  let token = JSON.parse(localStorage.getItem('token'));
-  console.log(token);
 
-  if (token) {
-    return { 'Authorization': 'Bearer ' + token.id_token };
-    // return { 'Authorization': 'Bearer ' + token.access_token };
-  } else {
-    return {};
-  }
-}
 
 export const incrementAsync = amount => dispatch => {
-  const requestOptions = {
-    method: 'GET',
-    headers: authHeader()
-  };
-  console.log(requestOptions);
-
-  return fetch(`/api/sessions`, requestOptions)
-  // fetch('/api/sessions')
-      .then(res => res.text())
+  callApi('sessions', 'GET', null)
       .then(res => {
         console.log(res);
-        dispatch(incrementByAmount(10));
-      })
-      .catch(err => err);
+      });
 };
 
 // The function below is called a selector and allows us to select a value from

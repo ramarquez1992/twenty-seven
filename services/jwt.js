@@ -1,20 +1,23 @@
 const {OAuth2Client} = require('google-auth-library');
 const googleAuthClient = new OAuth2Client(process.env.REACT_APP_GOOGLE_CLIENT_ID);
 
-const authenticateJwt = (req, res, next) => {
+const authenticate = async (token) => {
+    const ticket = await googleAuthClient.verifyIdToken({
+      idToken: token,
+      audience: process.env.REACT_APP_GOOGLE_CLIENT_ID
+    });
+    return ticket.getPayload();
+};
+
+
+const middleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (authHeader) {
     const token = authHeader.split(' ')[1];
 
-    googleAuthClient.verifyIdToken({
-      idToken: token,
-      audience: process.env.REACT_APP_GOOGLE_CLIENT_ID
-    })
+    authenticate(token)
         .then(res => {
-          const payload = res.getPayload();
-          const userid = payload['sub'];
-          console.log(payload);
           next();
         })
         .catch(console.error);
@@ -24,4 +27,5 @@ const authenticateJwt = (req, res, next) => {
   }
 };
 
-module.exports = authenticateJwt;
+module.exports.authenticate = authenticate;
+module.exports.middleware = middleware;
