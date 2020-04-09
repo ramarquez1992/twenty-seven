@@ -29,7 +29,7 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 // will call the thunk with the `dispatch` function as the first argument. Async
 // code can then be executed and other actions can be dispatched
 export const incrementAsync = amount => dispatch => {
-  fetch('/users')
+  fetch('/api/sessions')
       .then(res => res.text())
       .then(res => {
         console.log(res);

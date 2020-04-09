@@ -5,7 +5,7 @@ import { GoogleLogin, GoogleLogout } from "react-google-login";
 import moment from "moment";
 
 const loginFailure = (res) => {
-  alert('Login failed.');
+  console.log('Login failed.');
 };
 
 export function Auth() {
@@ -33,7 +33,7 @@ export function Auth() {
               }))}
               onFailure={loginFailure}
               cookiePolicy={'single_host_origin'}
-              isSignedIn={true}
+              isSignedIn={false}
           />
       }
     </div>
