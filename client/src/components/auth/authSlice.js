@@ -33,7 +33,7 @@ async function serverLogout(user) {
 }
 
 function getStoredUser() {
-  let stored = localStorage.getItem('user');
+  let stored = localStorage.getItem('token');
 
   return stored ? JSON.parse(stored) : null;
 }
@@ -42,18 +42,23 @@ export const authSlice = createSlice({
   name: 'auth',
 
   initialState: {
-    currentUser: getStoredUser()
+    currentUser: getStoredUser(),
+    loggedIn: false
   },
 
   reducers: {
     login: (state, action) => {
-      const u = action.payload;
-      state.currentUser = u;
-
-      serverLogin(u)
-          .then(res => {
-            localStorage.setItem('user', JSON.stringify(u));
-          });
+      console.log(action.payload);
+      const token = action.payload;
+      localStorage.setItem('token', JSON.stringify(token));
+      // state.currentUser = u;
+      //
+      // console.log('login in');
+      // serverLogin(u)
+      //     .then(res => {
+      //       localStorage.setItem('user', JSON.stringify(u));
+      //       window.location.reload(false);
+      //     });
     },
 
     logout: (state, action) => {
@@ -72,5 +77,6 @@ export const authSlice = createSlice({
 export const { login, logout } = authSlice.actions;
 
 export const selectCurrentUser = state => state.auth.currentUser;
+export const selectLoggedIn = state => state.auth.loggedIn;
 
 export default authSlice.reducer;

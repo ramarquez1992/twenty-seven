@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { Counter } from './components/counter/Counter';
 import store from './app/store';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
+import {Switch, BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {Landing} from "./components/landing/Landing";
+import {Home} from "./components/home/Home";
+import {Counter} from "./components/counter/Counter";
+import Header from "./components/header/Header";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
@@ -17,15 +18,24 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <Route path="/" component={App} />
-        <PrivateRoute path="/counter" component={Counter} />
-      </Router>
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+      <Provider store={store}>
+        <Router>
+          {store.getState().auth.currentUser ?
+              <Route>
+                <Header/>
+                <Switch>
+                  <PrivateRoute exact path="/counter" component={Counter} />
+                  <PrivateRoute path="*" component={Home} />
+                </Switch>
+              </Route>
+              :
+              <Route path="*" component={Landing} />
+          }
+        </Router>
+      </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
