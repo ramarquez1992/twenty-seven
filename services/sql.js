@@ -1,4 +1,4 @@
-const { Client } = require('pg');
+const {Client} = require('pg');
 
 const client = new Client({
   host: process.env.RDS_HOSTNAME,
@@ -15,7 +15,7 @@ module.exports = {
 
     try {
       res = await client.query(stmt, params);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
 

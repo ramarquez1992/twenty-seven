@@ -3,9 +3,9 @@ import {Auth} from "../auth/Auth";
 
 export function Landing() {
   return (
-    <div>
-      <Auth />
-      <p>LANDING PAGE</p>
-    </div>
+      <div>
+        <Auth/>
+        <p>LANDING PAGE</p>
+      </div>
   );
 }

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 async function serverLogin(token) {
   const requestOptions = {
@@ -51,7 +51,7 @@ export const authSlice = createSlice({
   }
 });
 
-export const { login, logout } = authSlice.actions;
+export const {login, logout} = authSlice.actions;
 
 export const selectCurrentUser = state => state.auth.user;
 export const selectLoggedIn = state => state.auth.loggedIn;

@@ -2,11 +2,11 @@ const {OAuth2Client} = require('google-auth-library');
 const googleAuthClient = new OAuth2Client(process.env.REACT_APP_GOOGLE_CLIENT_ID);
 
 const authenticate = async (token) => {
-    const ticket = await googleAuthClient.verifyIdToken({
-      idToken: token,
-      audience: process.env.REACT_APP_GOOGLE_CLIENT_ID
-    });
-    return ticket.getPayload();
+  const ticket = await googleAuthClient.verifyIdToken({
+    idToken: token,
+    audience: process.env.REACT_APP_GOOGLE_CLIENT_ID
+  });
+  return ticket.getPayload();
 };
 
 

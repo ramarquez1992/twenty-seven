@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 export const homeSlice = createSlice({
   name: 'main',
@@ -12,7 +12,7 @@ export const homeSlice = createSlice({
   }
 });
 
-export const { incrementByAmount } = homeSlice.actions;
+export const {incrementByAmount} = homeSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

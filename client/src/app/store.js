@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import authReducer from '../components/auth/authSlice';
 import homeReducer from '../components/home/homeSlice';
 import counterReducer from '../components/counter/counterSlice';

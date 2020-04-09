@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 import store from './app/store';
 import {Provider} from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-import {Switch, BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {Landing} from "./components/landing/Landing";
 import {Home} from "./components/home/Home";
 import {Counter} from "./components/counter/Counter";
 import Header from "./components/header/Header";
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={(props) => (
         store.getState().auth.loggedIn
             ? <Component {...props} />
-            : <Redirect to='/' />
-    )} />
+            : <Redirect to='/'/>
+    )}/>
 );
 
 ReactDOM.render(
@@ -25,12 +25,12 @@ ReactDOM.render(
               <Route>
                 <Header/>
                 <Switch>
-                  <PrivateRoute exact path="/counter" component={Counter} />
-                  <PrivateRoute path="*" component={Home} />
+                  <PrivateRoute exact path="/counter" component={Counter}/>
+                  <PrivateRoute path="*" component={Home}/>
                 </Switch>
               </Route>
               :
-              <Route path="*" component={Landing} />
+              <Route path="*" component={Landing}/>
           }
         </Router>
       </Provider>
