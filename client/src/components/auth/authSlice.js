@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-async function login(user) {
+async function serverLogin(user) {
   const response = await fetch('/api/login', {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
@@ -16,7 +16,7 @@ async function login(user) {
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-async function logout(user) {
+async function serverLogout(user) {
   const response = await fetch('/api/logout', {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
@@ -46,26 +46,30 @@ export const authSlice = createSlice({
   },
 
   reducers: {
-    setCurrentUser: (state, action) => {
-      const cu = state.currentUser;
-      if (action.payload == null && cu) {
-        state.currentUser = null;
+    login: (state, action) => {
+      const u = action.payload;
+      state.currentUser = u;
 
-        logout(cu)
-            .then(res => {
-              localStorage.removeItem('user');
-              window.location.reload(false);
-            });
-      } else {
-        localStorage.setItem('user', JSON.stringify(action.payload));
-        state.currentUser = action.payload;
-        login(action.payload);
-      }
+      serverLogin(u)
+          .then(res => {
+            localStorage.setItem('user', JSON.stringify(u));
+          });
+    },
+
+    logout: (state, action) => {
+      const u = state.currentUser;
+      state.currentUser = null;
+
+      serverLogout(u)
+          .then(res => {
+            localStorage.removeItem('user');
+            window.location.reload(false);
+          });
     }
   }
 });
 
-export const { setCurrentUser } = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 
 export const selectCurrentUser = state => state.auth.currentUser;
 
