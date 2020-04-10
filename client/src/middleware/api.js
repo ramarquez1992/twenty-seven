@@ -1,7 +1,10 @@
+import store from '../app/store';
+import {localLogout} from "../components/auth/authSlice";
+
 const BASE_URL = '/api/';
 
 function authHeader() {
-  let token = JSON.parse(localStorage.getItem('token'));
+  const token = store.getState().auth.token;
 
   if (token) {
     return {'Authorization': 'Bearer ' + token.id_token};
@@ -18,5 +21,5 @@ export async function callApi(endpoint, method, body) {
   };
 
   const response = await fetch(BASE_URL + endpoint, requestOptions);
-  return response.json();
+  return response.status < 400 ? response.json() : localLogout();
 }

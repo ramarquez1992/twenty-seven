@@ -1,5 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+function getStoredUser() {
+  let stored = localStorage.getItem('user');
+  return stored ? JSON.parse(stored) : null;
+}
+
+function getStoredToken() {
+  let stored = localStorage.getItem('token');
+  return stored ? JSON.parse(stored) : null;
+}
+
 async function serverLogin(token) {
   const requestOptions = {
     method: 'POST',
@@ -13,15 +23,11 @@ async function serverLogin(token) {
   return response.json();
 }
 
-function getStoredUser() {
-  let stored = localStorage.getItem('user');
-  return stored ? JSON.parse(stored) : null;
-}
-
-function getStoredToken() {
-  let stored = localStorage.getItem('token');
-  return stored ? JSON.parse(stored) : null;
-}
+export const localLogout = () => {
+  localStorage.clear();
+  window.location.reload(false);
+  return false;
+};
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -45,14 +51,14 @@ export const authSlice = createSlice({
     },
 
     logout: (state, action) => {
-      localStorage.clear();
-      window.location.reload(false);
+      localLogout();
     }
   }
 });
 
 export const {login, logout} = authSlice.actions;
 
+export const selectToken = state => state.auth.token;
 export const selectCurrentUser = state => state.auth.user;
 export const selectLoggedIn = state => state.auth.loggedIn;
 
