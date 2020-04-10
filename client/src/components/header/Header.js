@@ -17,7 +17,7 @@ function Header() {
 
           <List horizontal>
             <List.Item as={Link} to="/"><Button icon><Icon name="home"/></Button></List.Item>
-            <List.Item as={Link} to="/counter"><Button>Counter</Button></List.Item>
+            <List.Item as={Link} to="/counter"><Button>Example</Button></List.Item>
           </List>
         </div>
 

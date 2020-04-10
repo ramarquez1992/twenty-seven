@@ -25,7 +25,7 @@ export function Auth() {
             :
             <GoogleLogin
                 clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                buttonText="Login"
+                buttonText="Sign in with Google"
                 onSuccess={res => dispatch(login({token: res.tokenObj, profile: res.profileObj}))}
                 cookiePolicy={'single_host_origin'}
                 isSignedIn={true}

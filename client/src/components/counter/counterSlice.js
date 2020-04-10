@@ -32,7 +32,7 @@ export const {increment, decrement, incrementByAmount} = counterSlice.actions;
 
 
 export const incrementAsync = amount => dispatch => {
-  callApi('sessions', 'GET', null)
+  callApi('users', 'GET', null)
       .then(res => {
         console.log(res);
       });
