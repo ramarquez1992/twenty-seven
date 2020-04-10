@@ -1,5 +1,5 @@
 import store from '../app/store';
-import {localLogout} from "../components/auth/authSlice";
+import {logout} from "../components/auth/authSlice";
 
 const BASE_URL = '/api/';
 
@@ -21,5 +21,5 @@ export async function callApi(endpoint, method, body) {
   };
 
   const response = await fetch(BASE_URL + endpoint, requestOptions);
-  return response.status < 400 ? response.json() : localLogout();
+  return response.status < 400 ? response.json() : store.dispatch(logout());
 }

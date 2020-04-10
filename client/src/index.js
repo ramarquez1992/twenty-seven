@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import store from './app/store';
 import {Provider} from 'react-redux';
@@ -19,8 +19,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 );
 
 ReactDOM.render(
-    <Fragment>
-      {/*<React.StrictMode>*/}
+    <React.Fragment>
       <Provider store={store}>
         <Router>
           <Container>
@@ -38,8 +37,7 @@ ReactDOM.render(
           </Container>
         </Router>
       </Provider>
-      {/*</React.StrictMode>,*/}
-    </Fragment>,
+    </React.Fragment>,
     document.getElementById('root')
 );
 
