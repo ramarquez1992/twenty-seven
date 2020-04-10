@@ -8,6 +8,7 @@ import {Landing} from "./components/landing/Landing";
 import {Home} from "./components/home/Home";
 import {Counter} from "./components/counter/Counter";
 import Header from "./components/header/Header";
+import {Container} from "semantic-ui-react";
 
 const PrivateRoute = ({component: Component, ...rest}) => (
     <Route {...rest} render={(props) => (
@@ -19,23 +20,25 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 
 ReactDOM.render(
     <Fragment>
-    {/*<React.StrictMode>*/}
+      {/*<React.StrictMode>*/}
       <Provider store={store}>
         <Router>
-          {store.getState().auth.loggedIn ?
-              <Route>
-                <Header/>
-                <Switch>
-                  <PrivateRoute exact path="/counter" component={Counter}/>
-                  <PrivateRoute path="*" component={Home}/>
-                </Switch>
-              </Route>
-              :
-              <Route path="*" component={Landing}/>
-          }
+          <Container>
+            {store.getState().auth.loggedIn ?
+                <Route>
+                  <Header/>
+                  <Switch>
+                    <PrivateRoute exact path="/counter" component={Counter}/>
+                    <PrivateRoute path="*" component={Home}/>
+                  </Switch>
+                </Route>
+                :
+                <Route path="*" component={Landing}/>
+            }
+          </Container>
         </Router>
       </Provider>
-    {/*</React.StrictMode>,*/}
+      {/*</React.StrictMode>,*/}
     </Fragment>,
     document.getElementById('root')
 );
