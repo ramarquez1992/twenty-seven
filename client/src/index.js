@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import store from './app/store';
 import {Provider} from 'react-redux';
@@ -18,7 +18,8 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 );
 
 ReactDOM.render(
-    <React.StrictMode>
+    <Fragment>
+    {/*<React.StrictMode>*/}
       <Provider store={store}>
         <Router>
           {store.getState().auth.loggedIn ?
@@ -34,7 +35,8 @@ ReactDOM.render(
           }
         </Router>
       </Provider>
-    </React.StrictMode>,
+    {/*</React.StrictMode>,*/}
+    </Fragment>,
     document.getElementById('root')
 );
 
