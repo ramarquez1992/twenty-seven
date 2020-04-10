@@ -19,10 +19,10 @@ const sampleCard = (user) => {
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <a>
+          <span>
             <Icon name='user' />
-            22 Friends
-          </a>
+            22 Fiends
+          </span>
         </Card.Content>
       </Card>
   );
