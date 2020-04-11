@@ -33,12 +33,12 @@ export const {increment, decrement, incrementByAmount} = counterSlice.actions;
 
 
 export const incrementAsync = amount => dispatch => {
-  dispatch(loadingSlice.actions.toggle());
+  dispatch(loadingSlice.actions.increment());
   callApi('users', 'GET', null)
       .then(res => {
         console.log(res);
         dispatch(incrementByAmount(amount));
-        dispatch(loadingSlice.actions.toggle());
+        dispatch(loadingSlice.actions.decrement());
       });
 };
 

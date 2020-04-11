@@ -4,17 +4,22 @@ export const loadingSlice = createSlice({
   name: 'loading',
 
   initialState: {
+    loadingCount: 0,
     isLoading: false
   },
 
   reducers: {
-    toggle: state => {
-      state.isLoading = !state.isLoading;
+    increment: state => {
+      ++state.loadingCount;
     },
+
+    decrement: state => {
+      --state.loadingCount;
+    }
   }
 });
 
-export const {toggle} = loadingSlice.actions;
-export const selectIsLoading = state => state.loading.isLoading;
+export const {increment, decrement} = loadingSlice.actions;
+export const selectIsLoading = state => state.loading.loadingCount > 0;
 
 export default loadingSlice.reducer;
