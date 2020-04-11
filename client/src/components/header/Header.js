@@ -1,5 +1,6 @@
 import React from 'react';
 import {Auth} from '../auth/Auth';
+import {Loading} from '../loading/Loading';
 import List from "semantic-ui-react/dist/commonjs/elements/List";
 import {Link} from "react-router-dom";
 import Container from "semantic-ui-react/dist/commonjs/elements/Container";
@@ -12,6 +13,7 @@ function Header() {
       <Container style={{marginTop: "1em", marginBottom: "5em"}}>
         <div>
           <List floated='right' horizontal>
+            <List.Item><Loading/></List.Item>
             <List.Item><Auth/></List.Item>
           </List>
 

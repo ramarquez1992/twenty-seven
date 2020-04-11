@@ -33,6 +33,7 @@ export const authSlice = createSlice({
     },
 
     logout: (state) => {
+      console.log('logout')
       state.user = null;
       state.token = null;
       state.loggedIn = false;

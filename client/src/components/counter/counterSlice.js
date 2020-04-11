@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {callApi} from '../../middleware/api';
+import {loadingSlice} from "../loading/loadingSlice";
 
 export const counterSlice = createSlice({
   name: 'counter',
@@ -18,7 +19,6 @@ export const counterSlice = createSlice({
       state.value -= 1;
     },
     incrementByAmount: (state, action) => {
-      console.log('action',action);
       state.value += action.payload;
     },
   },
@@ -33,9 +33,12 @@ export const {increment, decrement, incrementByAmount} = counterSlice.actions;
 
 
 export const incrementAsync = amount => dispatch => {
+  dispatch(loadingSlice.actions.toggle());
   callApi('users', 'GET', null)
       .then(res => {
         console.log(res);
+        dispatch(incrementByAmount(amount));
+        dispatch(loadingSlice.actions.toggle());
       });
 };
 
