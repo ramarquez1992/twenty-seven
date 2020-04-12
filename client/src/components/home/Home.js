@@ -8,7 +8,7 @@ import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
 const sampleCard = (user) => {
   return (
       <Card>
-        <Image src={process.env.PUBLIC_URL + 'logo512.png'} wrapped ui={false} />
+        <Image src={process.env.PUBLIC_URL + 'img/logo512.png'} wrapped ui={false} />
         <Card.Content>
           <Card.Header>{user.name}</Card.Header>
           <Card.Meta>
@@ -32,10 +32,12 @@ export function Home() {
   const currentUser = useSelector(selectCurrentUser);
 
   return (
-      <Card.Group centered>
-        {sampleCard(currentUser)}
-        {sampleCard(currentUser)}
-        {sampleCard(currentUser)}
-      </Card.Group>
+      <div>
+        <Card.Group centered>
+          {sampleCard(currentUser)}
+          {sampleCard(currentUser)}
+          {sampleCard(currentUser)}
+        </Card.Group>
+      </div>
   );
 }

@@ -7,6 +7,7 @@ import Container from "semantic-ui-react/dist/commonjs/elements/Container";
 import {Divider} from "semantic-ui-react";
 import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
+import {ColorBlock} from "../colorBlock/ColorBlock";
 
 function Header() {
   return (
@@ -24,8 +25,9 @@ function Header() {
         </div>
 
         <Divider horizontal>
-          <Icon name='yen sign'/>
-          twenty-seven
+          <span style={{marginRight:"1em"}}><ColorBlock/></span>
+          <span style={{marginRight:"1em"}}><ColorBlock/></span>
+          <span><ColorBlock/></span>
         </Divider>
       </Container>
   );
